@@ -80,4 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
+
+    private void ResetJump() => readyToJump = true;
 }

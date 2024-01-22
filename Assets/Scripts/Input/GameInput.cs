@@ -17,5 +17,5 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovementVectorNormalized() => playerInputAction.Player.Move.ReadValue<Vector2>().normalized;
 
     public Vector2 GetMovementVector() => playerInputAction.Player.Move.ReadValue<Vector2>();
-
+    public Vector2 GetJump() => playerInputAction.Player.jump.ReadValue<Vector2>();
 }
