@@ -9,13 +9,17 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float      moveSpeed;
+    [SerializeField] private Transform  orientation;
+    [SerializeField] private Vector2    playerMovementDir;
+    [SerializeField] private Vector3    moveDir;
+    [SerializeField] private bool       canMove;
 
     [Header("Jump")]
     [SerializeField] private float      airMultiplier;
     [SerializeField] private float      jumpForce;
     [SerializeField] private float      jumpCooldown;
     [SerializeField] private bool       readyToJump;
-
+    [SerializeField] private float      airDrag;
 
     [Header("Ground check")]
     [SerializeField] private float      playerHeight;
@@ -23,14 +27,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool       grounded;
     [SerializeField] private float      groundDrag;
 
-    [SerializeField] private Transform  orientation;
-
-    [SerializeField] private Vector2    playerMovementDir;
-    [SerializeField] private Vector3    moveDir;
-
+    [Header("References")]
     [SerializeField] private Rigidbody  rb;
+    [SerializeField] private CapsuleCollider capsuleCollider;
 
 
+    const string ENVIROMENT_TAG = "env";
 
 
     private void Start()
@@ -61,15 +63,16 @@ public class PlayerMovement : MonoBehaviour
         Vector3 startRaycast = new(transform.position.x, transform.position.y + playerHeight, transform.position.z);
         grounded = Physics.Raycast(startRaycast, Vector3.down, playerHeight);
 
-
+        if (grounded)
+            canMove = true;
         PlayerInput();
 
         SpeedControl();
 
         if (grounded)
             rb.drag = groundDrag;
-        else 
-            rb.drag = 0;
+        else
+            rb.drag = airDrag;
     }
 
     private void FixedUpdate()
@@ -88,14 +91,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (grounded)
             rb.AddForce(10f * moveSpeed * moveDir.normalized, ForceMode.Force);
-        else
+        else if(canMove)
             rb.AddForce(10f * moveSpeed * airMultiplier *  moveDir.normalized, ForceMode.Force);
 
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = new (rb.velocity.x, 0f, rb.velocity.z);
 
         // limit velocity if needed
         if (flatVel.magnitude > moveSpeed)
@@ -106,4 +109,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void ResetJump() => readyToJump = true;
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag(ENVIROMENT_TAG) && !grounded)
+            canMove = false;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag(ENVIROMENT_TAG) && !grounded)
+            canMove = false;
+        
+    }
+
 }
