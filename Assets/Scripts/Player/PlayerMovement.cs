@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Utilities;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform  orientation;
 
-    [SerializeField] private Vector2    playerInput;
+    [SerializeField] private Vector2    playerMovementDir;
     [SerializeField] private Vector3    moveDir;
 
     [SerializeField] private Rigidbody  rb;
@@ -35,13 +37,33 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        readyToJump = true;
+        GameInput.Instance.OnJumpAction += OnJumpAction;
+    }
+
+    private void OnJumpAction(object sender, System.EventArgs e)
+    {
+        if (grounded)
+        {
+            readyToJump = false;
+
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * .5f + .2f, whatIsGround);
+        Vector3 startRaycast = new(transform.position.x, transform.position.y + playerHeight, transform.position.z);
+        grounded = Physics.Raycast(startRaycast, Vector3.down, playerHeight);
 
-        playerInput = GameInput.Instance.GetMovementVector();
+
+        PlayerInput();
+
         SpeedControl();
 
         if (grounded)
@@ -55,30 +77,32 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
+    private void PlayerInput()
+    {
+        playerMovementDir = GameInput.Instance.GetMovementVector();
+    }
     private void MovePlayer()
     {
         // calculate movement direction
-        moveDir = orientation.forward * playerInput.y + orientation.forward * playerInput.x; 
+        moveDir = orientation.forward * playerMovementDir.y + orientation.right * playerMovementDir.x;
 
-        rb.AddForce(moveDir.normalized * moveSpeed * 10f, ForceMode.Force);
+        if (grounded)
+            rb.AddForce(10f * moveSpeed * moveDir.normalized, ForceMode.Force);
+        else
+            rb.AddForce(10f * moveSpeed * airMultiplier *  moveDir.normalized, ForceMode.Force);
+
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new (rb.velocity.x, 0, rb.velocity.y);
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        // limit velocity if needed
         if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-    }
-
-    private void Jump()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     private void ResetJump() => readyToJump = true;
