@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2    playerMovementDir;
     [SerializeField] private Vector3    moveDir;
     [SerializeField] private bool       canMove;
+    [SerializeField] private float      gravity;
 
     [Header("Jump")]
     [SerializeField] private float      airMultiplier;
@@ -28,8 +29,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float      groundDrag;
 
     [Header("References")]
-    [SerializeField] private Rigidbody  rb;
-    [SerializeField] private CapsuleCollider capsuleCollider;
+    [SerializeField] private Rigidbody          rb;
+    [SerializeField] private CapsuleCollider    capsuleCollider;
 
 
     const string ENVIROMENT_TAG = "env";
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        capsuleCollider = GetComponent<CapsuleCollider>();
         readyToJump = true;
         GameInput.Instance.OnJumpAction += OnJumpAction;
     }
@@ -60,11 +62,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 startRaycast = new(transform.position.x, transform.position.y + playerHeight, transform.position.z);
-        grounded = Physics.Raycast(startRaycast, Vector3.down, playerHeight);
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out RaycastHit hit, playerHeight))
+        {
+            if (hit.distance > 0.1)
+                grounded = false;
+            else
+                grounded = true;
+        }
 
         if (grounded)
             canMove = true;
+
         PlayerInput();
 
         SpeedControl();
@@ -78,6 +87,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+
+        //if (!grounded)
+        //    rb.AddForce(Vector3.down * gravity * rb.mass, ForceMode.Force);
     }
 
     private void PlayerInput()
@@ -109,19 +121,5 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void ResetJump() => readyToJump = true;
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag(ENVIROMENT_TAG) && !grounded)
-            canMove = false;
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag(ENVIROMENT_TAG) && !grounded)
-            canMove = false;
-        
-    }
 
 }
