@@ -3145,10 +3145,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030727020}
-  - component: {fileID: 2030727021}
   - component: {fileID: 2030727022}
   - component: {fileID: 2030727023}
-  - component: {fileID: 2030727024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3173,37 +3171,6 @@ Transform:
   - {fileID: 1438724508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2030727021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030727019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4af8087d10e35a8418c0772339d7f1ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 7
-  orientation: {fileID: 1438724508}
-  playerMovementDir: {x: 0, y: 0}
-  moveDir: {x: 0, y: 0, z: 0}
-  canMove: 0
-  gravity: 2
-  airMultiplier: 0.4
-  jumpForce: 12
-  jumpCooldown: 0.25
-  readyToJump: 0
-  airDrag: 1
-  playerHeight: 1.26
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  grounded: 0
-  groundDrag: 5
-  rb: {fileID: 0}
-  capsuleCollider: {fileID: 0}
 --- !u!54 &2030727022
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3254,18 +3221,6 @@ CapsuleCollider:
   m_Height: 1.2853441
   m_Direction: 1
   m_Center: {x: 0, y: 0.6120591, z: 0}
---- !u!114 &2030727024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030727019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49cbc5a84e1ad2b4ab7101d10271ea57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2039236261
 GameObject:
   m_ObjectHideFlags: 3
@@ -3685,7 +3640,6 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652874982052}
   - component: {fileID: 919132148938643487}
-  - component: {fileID: 919132148938643488}
   m_Layer: 0
   m_Name: rana_con_gola@Idle
   m_TagString: Untagged
@@ -3714,19 +3668,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &919132148938643488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148938643486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 090c7eacb051fd443bb5048b21f686fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 0}
 --- !u!1 &1082271957803662149
 GameObject:
   m_ObjectHideFlags: 0
