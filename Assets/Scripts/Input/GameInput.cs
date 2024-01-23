@@ -11,9 +11,13 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnMoveCanceled;
     public event EventHandler OnRunCanceled;
 
+
+    private int buttonIndex = -1;
+
     public static GameInput Instance { get; private set; }
 
     private PlayerInputAction playerInputAction;
+    public  PlayerInputAction playerMemoryInput;
     private void Awake()
     {
         Instance = this;
@@ -25,6 +29,11 @@ public class GameInput : MonoBehaviour
 
         playerInputAction.Player.Run.canceled += Run_canceled;
         playerInputAction.Player.Move.canceled += Move_canceled;
+
+        playerMemoryInput = new PlayerInputAction();
+        playerMemoryInput.PlayerMemory.Enable();
+        playerMemoryInput.PlayerMemory.ValidInputs.performed += ValidInputs_performed;
+        playerMemoryInput.PlayerMemory.ValidInputs.canceled += ValidInputs_canceled;
 
     }
 
@@ -41,5 +50,21 @@ public class GameInput : MonoBehaviour
     public Vector2 GetMovementVectorNormalized() => playerInputAction.Player.Move.ReadValue<Vector2>().normalized;
 
     public Vector2 GetMovementVector() => playerInputAction.Player.Move.ReadValue<Vector2>();
-    
+
+
+    private void ValidInputs_canceled(InputAction.CallbackContext obj) => buttonIndex = -1;
+
+    private void ValidInputs_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        for (int i = 0; i < playerInputAction.PlayerMemory.ValidInputs.controls.Count; i++)
+        {
+            if (playerInputAction.PlayerMemory.ValidInputs.controls[i].name == obj.control.name)
+                buttonIndex = i;
+        }
+    }
+
+    public int GetButtonIndex() => buttonIndex;
+
+    public int GetButtonLenght() => playerMemoryInput.PlayerMemory.ValidInputs.controls.Count;
+
 }
