@@ -22,6 +22,7 @@ public class MemoryCombat : MonoBehaviour
 
     private void Update()
     {
+        //play sound
         if (GameInput.Instance.playerMemoryInput.PlayerMemory.ValidInputs.IsPressed())
         {
             CheckMusic();
@@ -46,6 +47,7 @@ public class MemoryCombat : MonoBehaviour
         if (soundMinigames[index] == audioClip)
         {
             print("vaaaaa");
+            index++;
         }
         else { 
             print("non va");
