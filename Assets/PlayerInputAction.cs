@@ -145,6 +145,100 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerMemory"",
+            ""id"": ""e198d86e-3b6d-4dee-9463-19aa8ada2ab5"",
+            ""actions"": [
+                {
+                    ""name"": ""ValidInputs"",
+                    ""type"": ""Button"",
+                    ""id"": ""50882f51-8e32-4f74-9461-9938fa362970"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""edf40c44-599b-4db2-9398-0456ea1736c9"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17c62525-66ce-43e8-a743-4f4882fe08b7"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75ff7df2-a718-44ba-ae5d-8b449414a62b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30d7350d-5e25-4e0f-8953-f73c8adb585e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a512f9f-4f4f-47c3-837c-9d55491efaf7"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74e05612-78f0-4cd9-8469-9191273250db"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2c94537-c316-4d75-9130-7a384547778a"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ValidInputs"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -154,6 +248,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        // PlayerMemory
+        m_PlayerMemory = asset.FindActionMap("PlayerMemory", throwIfNotFound: true);
+        m_PlayerMemory_ValidInputs = m_PlayerMemory.FindAction("ValidInputs", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,10 +370,60 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // PlayerMemory
+    private readonly InputActionMap m_PlayerMemory;
+    private List<IPlayerMemoryActions> m_PlayerMemoryActionsCallbackInterfaces = new List<IPlayerMemoryActions>();
+    private readonly InputAction m_PlayerMemory_ValidInputs;
+    public struct PlayerMemoryActions
+    {
+        private @PlayerInputAction m_Wrapper;
+        public PlayerMemoryActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ValidInputs => m_Wrapper.m_PlayerMemory_ValidInputs;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerMemory; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PlayerMemoryActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerMemoryActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerMemoryActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerMemoryActionsCallbackInterfaces.Add(instance);
+            @ValidInputs.started += instance.OnValidInputs;
+            @ValidInputs.performed += instance.OnValidInputs;
+            @ValidInputs.canceled += instance.OnValidInputs;
+        }
+
+        private void UnregisterCallbacks(IPlayerMemoryActions instance)
+        {
+            @ValidInputs.started -= instance.OnValidInputs;
+            @ValidInputs.performed -= instance.OnValidInputs;
+            @ValidInputs.canceled -= instance.OnValidInputs;
+        }
+
+        public void RemoveCallbacks(IPlayerMemoryActions instance)
+        {
+            if (m_Wrapper.m_PlayerMemoryActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPlayerMemoryActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerMemoryActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerMemoryActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PlayerMemoryActions @PlayerMemory => new PlayerMemoryActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+    }
+    public interface IPlayerMemoryActions
+    {
+        void OnValidInputs(InputAction.CallbackContext context);
     }
 }
