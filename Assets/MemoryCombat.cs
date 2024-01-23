@@ -18,33 +18,12 @@ public class MemoryCombat : MonoBehaviour
         buttonLenght = GameInput.Instance.GetButtonLenght() - 1;
         
         InitRandoMusic();
-        ////plays the randomsequence sounds
-        //int currentIndex = 0;
-
-
-        //while (currentIndex < inputLen)
-        //{
-        //    if (validInput)
-        //        if (Input.GetKeyDown(soundMinigames[currentIndex].randomInput))
-        //        {
-        //            //playSound - animation
-
-        //            currentIndex++;
-        //        }
-        //        else
-        //        {
-        //            //playsound ERROR
-        //            //playerLives --;
-        //            //if !playerLives 
-        //        }
-        //}
     }
 
     private void Update()
     {
         if (GameInput.Instance.playerMemoryInput.PlayerMemory.ValidInputs.IsPressed())
         {
-            //play audio clip
             CheckMusic();
         }
     }
