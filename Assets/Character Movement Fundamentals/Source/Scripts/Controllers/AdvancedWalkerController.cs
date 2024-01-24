@@ -67,8 +67,9 @@ namespace CMF
 			Sliding,
 			Falling,
 			Rising,
-			Jumping
-		}
+			Jumping,
+            InDialogue
+        }
 		
 		ControllerState currentControllerState = ControllerState.Falling;
 

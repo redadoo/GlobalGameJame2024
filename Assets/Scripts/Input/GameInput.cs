@@ -16,7 +16,7 @@ public class GameInput : MonoBehaviour
 
     public static GameInput Instance { get; private set; }
 
-    private PlayerInputAction playerInputAction;
+    public  PlayerInputAction playerInputAction;
     public  PlayerInputAction playerMemoryInput;
     private void Awake()
     {

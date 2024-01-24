@@ -1,20 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class InteractionSystem : MonoBehaviour
 {
+    public event EventHandler                   OnInteractExit;
+    public event EventHandler<GameObject>       OnInteractEnter;
+
+    [SerializeField] private float              radius;
+    [SerializeField] private float              distance;
+    [SerializeField] private RaycastHit         lastNpc;
+    [SerializeField] private bool               havedInteraction;
+
+    public static InteractionSystem Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        havedInteraction = false;
+        lastNpc = new RaycastHit();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(transform.position + transform.up * distance, radius);
+    }
+
     private void Update()
     {
-        RaycastHit hit;
-        CapsuleCollider charContr = GetComponent<CapsuleCollider>();
-        Vector3 p1 = transform.position + charContr.center + Vector3.up * -charContr.height * 0.5F;
-        Vector3 p2 = p1 + Vector3.up * charContr.height;
 
-        // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-        if (Physics.CapsuleCast(p1, p2, charContr.radius, transform.forward, out hit, 10))
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, 5, transform.forward, 1f);
+        
+        foreach (var hit in hits)
         {
-            print(hit.distance + "  " + hit.collider.gameObject.name);
-        }       
+            if (hit.collider.CompareTag("npc") && GameInput.Instance.playerInputAction.Player.Interact.IsPressed())
+            {
+                havedInteraction = true;
+                lastNpc = hit;
+                OnInteractEnter?.Invoke(this, hit.collider.gameObject);
+                hit.collider.GetComponent<NpcBehaviour>().transform.LookAt(transform.position);
+            }
+        }
+
+        if (havedInteraction && !hits.Contains(lastNpc))
+        {
+            hits = null;
+            OnInteractExit?.Invoke(this, EventArgs.Empty);
+            havedInteraction = false;
+        }
     }
+
+    
+
+
 }
