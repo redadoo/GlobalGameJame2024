@@ -13,7 +13,6 @@ namespace Fireflys
         private void Start()
         {
             Mesh sharedSkinnedMeshRenderer = targetMeshRenderer.sharedMesh;
-            Debug.Log(sharedSkinnedMeshRenderer.blendShapeCount);
 
             GrowNeck(0.5f).SetLoops(-1);
         }
