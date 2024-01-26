@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - env
-<<<<<<< HEAD
-  - npc_interactable
-  - memory_minigame_interactable
-  - frogger_minigame_interactable
-  - flyhunt_minigame_interactable
-=======
-  - Fly
-  - Button
->>>>>>> development
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -21,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - whatIsGround
-  - whatIsWall
+  - 
+  - 
   - 
   - 
   - 
