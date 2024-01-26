@@ -1,19 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
-    public enum InputState
-    {
-        Basic,
-        MemoryMinigame,
-        FroggerMinigame,
-        FlyHunt
-    }
-
     public event EventHandler OnJumpAction;
     public event EventHandler OnMoveAction;
     public event EventHandler OnRunAction;
@@ -28,14 +18,9 @@ public class GameInput : MonoBehaviour
 
     public  PlayerInputAction playerInputAction;
     public  PlayerInputAction playerMemoryInput;
-
-    private InputState inputState;
     private void Awake()
     {
         Instance = this;
-
-        inputState = InputState.Basic;
-
         playerInputAction = new PlayerInputAction();
         playerInputAction.Player.Enable();
         playerInputAction.Player.Jump.performed += Jump_performed;
@@ -49,16 +34,7 @@ public class GameInput : MonoBehaviour
         playerMemoryInput.PlayerMemory.Enable();
         playerMemoryInput.PlayerMemory.ValidInputs.performed += ValidInputs_performed;
         playerMemoryInput.PlayerMemory.ValidInputs.canceled += ValidInputs_canceled;
-    }
 
-    private void Start()
-    {
-        InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
-    }
-
-    private void OnMemoryMiniGameStart(object sender, GameObject e)
-    {
-        ChangeInputState(InputState.MemoryMinigame);
     }
 
     private void Move_canceled(InputAction.CallbackContext obj) => OnMoveCanceled?.Invoke(this, EventArgs.Empty);
@@ -91,32 +67,4 @@ public class GameInput : MonoBehaviour
 
     public int GetButtonLenght() => playerMemoryInput.PlayerMemory.ValidInputs.controls.Count;
 
-    public IEnumerable<string> GetKeyText()
-    {
-        foreach (var item in playerMemoryInput.PlayerMemory.ValidInputs.bindings)
-        {
-            yield return item.ToDisplayString();
-        }
-    }
-
-
-    public void ChangeInputState(InputState newstate)
-    {
-        switch (newstate) 
-        {
-            case InputState.Basic:
-                playerInputAction.Player.Enable();
-                playerMemoryInput.PlayerMemory.Disable();
-                break;
-            case InputState.MemoryMinigame:
-                playerInputAction.Player.Disable();
-                playerMemoryInput.PlayerMemory.Enable();
-                break;
-            case InputState.FlyHunt:
-                break;
-            case InputState.FroggerMinigame:
-                break;
-        }
-        inputState = newstate;
-    }
 }
