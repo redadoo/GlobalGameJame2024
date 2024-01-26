@@ -6,6 +6,7 @@ TagManager:
   tags:
   - env
   - npc
+  - memory_minigame
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ public class ThirdPersonCam : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private GameObject thirdPersonCam;
     [SerializeField] private GameObject dialogueCam;
+    [SerializeField] private GameObject memoryMinigameCamera;
     [SerializeField] private GameObject topDownCam;
 
     [SerializeField] private CameraStyle currentStyle;
@@ -22,7 +23,8 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Basic,
         Topdown,
-        Dialogue
+        Dialogue,
+        MemoryMiniGame
     }
 
     private void Start()
@@ -30,7 +32,16 @@ public class ThirdPersonCam : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         InteractionSystem.Instance.OnInteractEnter += OnInteractEnter;
-        InteractionSystem.Instance.OnInteractExit += OnInteractExit; ;
+        InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart; ;
+        InteractionSystem.Instance.OnInteractExit += OnInteractExit;
+
+    }
+
+    private void OnMemoryMiniGameStart(object sender, GameObject e)
+    {
+        memoryMinigameCamera.GetComponent<CinemachineVirtualCamera>().Follow = e.transform;
+        memoryMinigameCamera.GetComponent<CinemachineVirtualCamera>().LookAt = e.transform;
+        SwitchCameraStyle(CameraStyle.MemoryMiniGame);
     }
 
     private void OnInteractExit(object sender, System.EventArgs e)
@@ -55,15 +66,14 @@ public class ThirdPersonCam : MonoBehaviour
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
-        if (currentStyle == CameraStyle.Basic || currentStyle == CameraStyle.Topdown)
-        {
-            //rotate player object
-            Vector2 input = GameInput.Instance.GetMovementVector();
-            Vector3 inputDir = orientation.forward * input.y + orientation.right * input.x;
 
-            if (inputDir != Vector3.zero)
-                playerObject.forward = Vector3.Slerp(playerObject.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-        }
+        //rotate player object
+        Vector2 input = GameInput.Instance.GetMovementVector();
+        Vector3 inputDir = orientation.forward * input.y + orientation.right * input.x;
+
+        if (inputDir != Vector3.zero)
+            playerObject.forward = Vector3.Slerp(playerObject.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+        
     }
 
     private void SwitchCameraStyle(CameraStyle newStyle)
@@ -71,10 +81,12 @@ public class ThirdPersonCam : MonoBehaviour
         dialogueCam.SetActive(false);
         thirdPersonCam.SetActive(false);
         topDownCam.SetActive(false);
+        memoryMinigameCamera.SetActive(false);
 
         if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
         if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);
         if (newStyle == CameraStyle.Dialogue) dialogueCam.SetActive(true);
+        if (newStyle == CameraStyle.MemoryMiniGame) memoryMinigameCamera.SetActive(true);
 
         currentStyle = newStyle;
     }

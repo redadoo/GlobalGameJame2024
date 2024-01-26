@@ -51,7 +51,6 @@ public class MemoryGameManager : MonoBehaviour
     {
         if (timer > 0)
         {
-            
             timer -= Time.deltaTime;
         }
         if (state == MemoryGameState.EnemyTurn && isEnemyPlaying == false)
