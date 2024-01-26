@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - env
-  - npc
-  - memory_minigame
+  - npc_interactable
+  - memory_minigame_interactable
+  - frogger_minigame_interactable
+  - flyhunt_minigame_interactable
   layers:
   - Default
   - TransparentFX

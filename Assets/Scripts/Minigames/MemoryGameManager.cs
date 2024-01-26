@@ -16,14 +16,17 @@ public class MemoryGameManager : MonoBehaviour
     public event EventHandler OnSuccess;
     public event EventHandler OnFailure;
 
-    [SerializeField] private MemoryGameState state;
-    [SerializeField] private AudioClip[] audioClips;
-    [SerializeField] private AudioClip[] soundMinigames;
-    [SerializeField] private int buttonLenght;
-    [SerializeField] public int inputLen;
-    [SerializeField] private float timer = 1f;
+    [SerializeField] private MemoryGameState    state;
+    [SerializeField] private AudioClip[]        audioClips;
+    [SerializeField] private AudioClip[]        soundMinigames;
+    [SerializeField] private int                buttonLenght;
+    [SerializeField] public  int                inputLen;
+    [SerializeField] private float              timer = 1f;
+    [SerializeField] private int                life = 3;
+
     public AudioClip[] GetAudioClipArray() => audioClips;
     public AudioClip[] GetAudioClipMinigames() => soundMinigames;
+
     public bool isEnemyPlaying = false;
 
     private void Awake()
@@ -33,7 +36,9 @@ public class MemoryGameManager : MonoBehaviour
     void Start()
     {
         buttonLenght = GameInput.Instance.GetButtonLenght() - 1;
+        print(buttonLenght);
         state = MemoryGameState.EnemyTurn;
+        InitRandomMusic();
     }
 
     void InitRandomMusic()
