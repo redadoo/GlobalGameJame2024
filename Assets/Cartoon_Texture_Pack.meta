@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Cartoon_Texture_Pack.meta
 guid: e2c79826aff55054eab1f6167608d443
+========
+guid: d99ce20c27b4b264989ae904a0c1ec64
+>>>>>>>> parent of bd001c54 (merge soon):Assets/ScriptableObject.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

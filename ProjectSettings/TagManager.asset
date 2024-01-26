@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - env
+  - npc
+  - memory_minigame
+>>>>>>> parent of bd001c54 (merge soon)
   layers:
   - Default
   - TransparentFX
