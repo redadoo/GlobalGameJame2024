@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - env
+  - Fly
+  - Button
+  - interactable
+  - memory_minigame
   layers:
   - Default
   - TransparentFX
