@@ -25,7 +25,7 @@ public class EnemyFrog : MonoBehaviour
 
     IEnumerator playAudioSequentially()
     {
-        yield return null;
+        yield return new WaitForSeconds(1.4f);
 
         //1.Loop through each AudioClip
         for (int i = 0; i < MemoryGameManager.Instance.GetAudioClipMinigames().Count; i++)
@@ -34,7 +34,7 @@ public class EnemyFrog : MonoBehaviour
             adSource.clip = MemoryGameManager.Instance.GetAudioClipMinigames()[i];
 
             //3.Play Audio
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.4f);
             adSource.Play();
             UiManager.Instance.AnimBar(true, MemoryGameManager.Instance.GetClipPos(adSource.clip));
             //4.Wait for it to finish playing
