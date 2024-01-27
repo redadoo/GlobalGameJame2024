@@ -9,6 +9,7 @@ public class PlayerMemoryGame : MonoBehaviour
     [SerializeField] private int                life;
     [SerializeField] private AudioSource        adSource;
     [SerializeField] private List<AudioClip>    PlayedClip;
+    [SerializeField] private AudioClip          failedAttempt;
     bool playerTurn = false;
 
     public static PlayerMemoryGame Instance { get; private set; }
@@ -53,10 +54,14 @@ public class PlayerMemoryGame : MonoBehaviour
     {
         adSource.clip = MemoryGameManager.Instance.GetAudioClipArray()[index];
         adSource.Play();
-        if(!MemoryGameManager.Instance.CheckClip(adSource.clip))
-            life--;
         UiManager.Instance.AnimBar(true, MemoryGameManager.Instance.GetClipPos(adSource.clip));
         UiManager.Instance.AnimBar(false, MemoryGameManager.Instance.GetClipPos(adSource.clip));
+        if(!MemoryGameManager.Instance.CheckClip(adSource.clip))
+        {
+            adSource.clip = failedAttempt;
+            adSource.Play();
+            life--;
+        }
     }
 
     public int GetLife() => life;
