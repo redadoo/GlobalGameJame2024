@@ -31,12 +31,13 @@ public class UiManager : MonoBehaviour
     void Start()
     {
 
-        InteractionSystem.Instance.OnInteractExit += OnInteractExit;
-        InteractionSystem.Instance.OnInteractRange += OnInteractRange;
-        InteractionSystem.Instance.OnInteractEnter += OnInteractEnter;
-        InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
+        //InteractionSystem.Instance.OnInteractExit += OnInteractExit;
+        //InteractionSystem.Instance.OnInteractRange += OnInteractRange;
+        //InteractionSystem.Instance.OnInteractEnter += OnInteractEnter;
+        //InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
 
         MemoryGameManager.Instance.OnDeath += OnDeath;
+
 
         for (int i = 0; i < keyText.Count; i++)
             keyText[i].text = GameInput.Instance.GetKeyText().ToList()[i];
@@ -48,6 +49,11 @@ public class UiManager : MonoBehaviour
         isOnMinigame = false;
         DialogueNoticeUI.SetActive(false);
         memoryMinigame.SetActive(false);
+        isOnMinigame = true;
+
+        DialogueNoticeUI.SetActive(false);
+        memoryMinigame.SetActive(true);
+        GameInput.Instance.ChangeInputState(GameInput.InputState.MemoryMinigame);
     }
 
     private void OnDeath(object sender, EventArgs e)
@@ -61,31 +67,31 @@ public class UiManager : MonoBehaviour
         lifePlayer.text = (PlayerMemoryGame.Instance.GetLife()).ToString();
     }
 
-    private void OnInteractRange(object sender, System.EventArgs e)
-    {
-        if(!isOnMinigame)
-            DialogueNoticeUI.SetActive(true);
-    }
+    //private void OnInteractRange(object sender, System.EventArgs e)
+    //{
+    //    if(!isOnMinigame)
+    //        DialogueNoticeUI.SetActive(true);
+    //}
 
-    private void OnMemoryMiniGameStart(object sender, GameObject e)
-    {
-        isOnMinigame = true;
+    //private void OnMemoryMiniGameStart(object sender, GameObject e)
+    //{
+    //    isOnMinigame = true;
 
-        DialogueNoticeUI.SetActive(false);
-        memoryMinigame.SetActive(true);
-        GameInput.Instance.ChangeInputState(GameInput.InputState.MemoryMinigame);
-    }
+    //    DialogueNoticeUI.SetActive(false);
+    //    memoryMinigame.SetActive(true);
+    //    GameInput.Instance.ChangeInputState(GameInput.InputState.MemoryMinigame);
+    //}
 
-    private void OnInteractEnter(object sender, GameObject e)
-    {
+    //private void OnInteractEnter(object sender, GameObject e)
+    //{
 
-    }
+    //}
 
-    private void OnInteractExit(object sender, System.EventArgs e)
-    {
-        isOnMinigame = false;
-        DialogueNoticeUI.SetActive(false);
-    }
+    //private void OnInteractExit(object sender, System.EventArgs e)
+    //{
+    //    isOnMinigame = false;
+    //    DialogueNoticeUI.SetActive(false);
+    //}
 
     static public Color ChangeColorValue(Color color)
     {

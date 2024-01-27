@@ -35,16 +35,16 @@ public class MemoryGameManager : MonoBehaviour
     }
     void Start()
     {
-        InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
-
+        //InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
+        isPlaying = true;
         state = MemoryGameState.EnemyTurn;
         InitRandomMusic();
     }
 
-    private void OnMemoryMiniGameStart(object sender, GameObject e)
-    {
-        isPlaying = true;
-    }
+    //private void OnMemoryMiniGameStart(object sender, GameObject e)
+    //{
+    //    isPlaying = true;
+    //}
 
     void InitRandomMusic()
     {
