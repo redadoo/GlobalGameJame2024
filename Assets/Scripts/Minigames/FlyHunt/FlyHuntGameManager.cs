@@ -48,7 +48,7 @@ public class FlyHuntGameManager : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
         highscoreLabel.text = $"Highscore {highscore.Value.ToString("0000000")}";
         titleScreen.SetActive(true);
         gameplayScreen.SetActive(false);

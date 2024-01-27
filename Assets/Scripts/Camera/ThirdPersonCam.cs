@@ -34,7 +34,7 @@ public class ThirdPersonCam : MonoBehaviour
         InteractionSystem.Instance.OnInteractEnter += OnInteractEnter;
         InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart; ;
         InteractionSystem.Instance.OnInteractExit += OnInteractExit;
-        MemoryGameManager.Instance.OnDeath += OnDeath;
+        //MemoryGameManager.Instance.OnDeath += OnDeath;
 
     }
 
@@ -82,7 +82,12 @@ public class ThirdPersonCam : MonoBehaviour
         
     }
 
-    private void SwitchCameraStyle(CameraStyle newStyle)
+    public void EnableThirdPersonCamera(bool enable)
+    {
+        thirdPersonCam.SetActive(enable);
+    }
+    
+    public void SwitchCameraStyle(CameraStyle newStyle)
     {
         dialogueCam.SetActive(false);
         thirdPersonCam.SetActive(false);
