@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1d9030-a42b-4a17-bb46-a242f62b34dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GlobalGameJame2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GlobalGameJame2024/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/RanaPlayer/rana_player.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/RanaPlayer/rana_player.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/FrogToad-EaDer SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/FrogToad-EaDer SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Fonts/OptimusPrincepsSemiBold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/OptimusPrincepsSemiBold SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/RenderTexture/Monitor.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/RenderTexture/Monitor.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMap/MainMapIsland_.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMap/MainMapIsland_.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Camera/ThirdPersonCam.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Camera/ThirdPersonCam.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minigames/FlyHunt/FlyHuntGameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minigames/FlyHunt/FlyHuntGameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GlobalData/Npcs/Rofg-StartMiniGame.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GlobalData/Npcs/Rofg-StartMiniGame.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMap/MAIN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMap/MAIN.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,15 +34,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.17f1\Editor\Unity.exe" />
@@ -86,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706355310263</updated>
-      <workItem from="1706355316366" duration="13067000" />
+      <workItem from="1706355316366" duration="13662000" />
     </task>
     <servers />
   </component>

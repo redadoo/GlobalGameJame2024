@@ -689,37 +689,37 @@ PrefabInstance:
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 132.7679
+      value: 133.54156
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39.937794
+      value: 37.19284
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -98.61848
+      value: -91.66556
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.2998862
+      value: -0.2817151
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.068163276
+      value: 0.0033800008
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9278698
+      value: -0.95942307
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.21090233
+      value: -0.011514054
       objectReference: {fileID: 0}
     - target: {fileID: 8204631259143423504, guid: b86ecb46bb38ad54e8bb8655518e98e4,
         type: 3}
@@ -8125,6 +8125,7 @@ MonoBehaviour:
   actionSequenceIfTrue:
   - {fileID: 11400000, guid: d3a0c6b6229029a40bcc5b99dfd89032, type: 2}
   - {fileID: 11400000, guid: d8184d1501518cb4aac05d5f3cf0e0fd, type: 2}
+  - {fileID: 11400000, guid: c4b75a6b22151c54f880229dee5d5d56, type: 2}
   currentState: 0
   npcAnimator: {fileID: 1353359442}
   npcCamera: {fileID: 1820344260}
@@ -8775,12 +8776,12 @@ PrefabInstance:
     - target: {fileID: 48668598585527893, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000042690544
+      value: 0.000000004283282
       objectReference: {fileID: 0}
     - target: {fileID: 48668598585527893, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -5.2810606e-10
+      value: -5.2986615e-10
       objectReference: {fileID: 0}
     - target: {fileID: 961321768956692428, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
@@ -8805,12 +8806,12 @@ PrefabInstance:
     - target: {fileID: 961321768956692428, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017324892
+      value: -0.000000017324659
       objectReference: {fileID: 0}
     - target: {fileID: 961321768956692428, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 7.303955e-10
+      value: -7.303858e-10
       objectReference: {fileID: 0}
     - target: {fileID: 2955775372139509865, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
@@ -8890,12 +8891,12 @@ PrefabInstance:
     - target: {fileID: 7730874000206552091, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017683949
+      value: 0.00000001767872
       objectReference: {fileID: 0}
     - target: {fileID: 7730874000206552091, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000013569625
+      value: -0.0000000013565614
       objectReference: {fileID: 0}
     - target: {fileID: 8022731375603122126, guid: c69a90dd0d38ae64a9460fa306511573,
         type: 3}
@@ -10179,8 +10180,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3200836, y: 2.8759422, z: 2.556572}
-  m_Center: {x: -0.0077590942, y: 1.4390354, z: 0.778286}
+  m_Size: {x: 1.3200836, y: 2.8759422, z: 2.873993}
+  m_Center: {x: -0.0077590942, y: 1.4390354, z: 0.93699646}
 --- !u!54 &1636632694
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minigames/Frogger.unity
     guid: bbbf42b66ea14dc46b8ade1f364dd7cf
+  - enabled: 1
+    path: Assets/Scenes/Minigames/MemoryGame.unity
+    guid: c5a181e87e6decd4da1831aa93337a60
   m_configObjects: {}
