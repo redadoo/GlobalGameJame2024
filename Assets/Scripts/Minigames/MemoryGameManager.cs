@@ -18,6 +18,7 @@ public class MemoryGameManager : MonoBehaviour
     public event EventHandler OnSuccess;
     public event EventHandler OnFailure;
     public event EventHandler OnDeath;
+    public event EventHandler OnMemoryMiniGameStart;
 
     [SerializeField] private MemoryGameState    state;
     [SerializeField] private AudioClip[]        audioClips;
@@ -35,6 +36,7 @@ public class MemoryGameManager : MonoBehaviour
     }
     void Start()
     {
+        OnMemoryMiniGameStart?.Invoke(this, EventArgs.Empty);
         //InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
         isPlaying = true;
         state = MemoryGameState.EnemyTurn;

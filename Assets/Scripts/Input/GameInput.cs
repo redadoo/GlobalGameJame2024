@@ -51,14 +51,14 @@ public class GameInput : MonoBehaviour
 
     private void Start()
     {
-        //InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
-        ChangeInputState(InputState.MemoryMinigame);
+        if (MemoryGameManager.Instance != null)
+        MemoryGameManager.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
     }
 
-    //private void OnMemoryMiniGameStart(object sender, GameObject e)
-    //{
-    //    ChangeInputState(InputState.MemoryMinigame);
-    //}
+    private void OnMemoryMiniGameStart(object sender, EventArgs e)
+    {
+       ChangeInputState(InputState.MemoryMinigame);
+    }
 
     private void Move_canceled(InputAction.CallbackContext obj) => OnMoveCanceled?.Invoke(this, EventArgs.Empty);
 
