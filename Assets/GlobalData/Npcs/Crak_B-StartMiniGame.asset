@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Crak_B-StartMiniGame
   m_EditorClassIdentifier: 
   animatorStateValue: 0
-  sceneToStart: 
+  sceneToStart: Platform

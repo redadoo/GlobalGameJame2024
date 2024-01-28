@@ -60,6 +60,11 @@ public class FlyHuntGameManager : MonoBehaviour
     
     private void Update()
     {
+        if(score.Value == 1500)
+        {
+            isFlyHuntCompleted.Value = true;  
+        }
+
         if (state == GameState.Gameplay)
         {
             timeBetweenSpawn -= Time.deltaTime;
