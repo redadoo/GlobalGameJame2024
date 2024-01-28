@@ -20,7 +20,6 @@ public class PlayerMemoryGame : MonoBehaviour
     }
     private void Start()
     {
-        life = 3;
         MemoryGameManager.Instance.OnPlayerTurn += MemoryGameManager_OnPlayerTurn;
         MemoryGameManager.Instance.OnEnemyTurn += OnEnemyTurn; ;
     }
@@ -37,13 +36,6 @@ public class PlayerMemoryGame : MonoBehaviour
 
     private void Update()
     {
-        if (playerTurn && life == 0)
-        {
-            print("asdasdsadsada");
-            MemoryGameManager.Instance.ResetValue();
-            playerTurn = false;
-            life = 3;
-        }
         if (playerTurn && GameInput.Instance.playerMemoryInput.PlayerMemory.ValidInputs.WasPressedThisFrame())
         {
             PlayClip(GameInput.Instance.GetButtonIndex());
@@ -60,10 +52,10 @@ public class PlayerMemoryGame : MonoBehaviour
         {
             adSource.clip = failedAttempt;
             adSource.Play();
-            life--;
+            MemoryGameManager.Instance.life--;
         }
     }
 
-    public int GetLife() => life;
+    public int GetLife() => MemoryGameManager.Instance.life;
 
 }
