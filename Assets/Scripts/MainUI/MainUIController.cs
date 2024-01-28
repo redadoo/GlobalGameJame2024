@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class MainUIController : MonoBehaviour

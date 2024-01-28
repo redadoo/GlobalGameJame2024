@@ -34,9 +34,7 @@ public class ThirdPersonCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        InteractionSystem.Instance.OnInteractEnter += OnInteractEnter;
-        InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart; ;
-        InteractionSystem.Instance.OnInteractExit += OnInteractExit;
+
         //MemoryGameManager.Instance.OnDeath += OnDeath;
 
     }

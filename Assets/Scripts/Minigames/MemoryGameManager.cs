@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityAtoms.BaseAtoms;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
-using UnityEditor.Rendering.LookDev;
+
 
 public class MemoryGameManager : MonoBehaviour
 {
