@@ -13,6 +13,7 @@ namespace Fireflys
         {
             if (string.IsNullOrEmpty(sceneToStart)) return;
             
+            StartPositionController.Instance.SaveCurrentPosition();
             Sequence fadeAndStart = DOTween.Sequence();
             fadeAndStart.AppendCallback(() => { MainUIController.Instance.FadePanelShow(true); });
             fadeAndStart.AppendInterval(0.4f);

@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cc1d9030-a42b-4a17-bb46-a242f62b34dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GlobalGameJame2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GlobalGameJame2024/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GlobalData/Npcs/Rofg-StartMiniGame.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GlobalData/Npcs/Rofg-StartMiniGame.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMap/MAIN.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMap/MAIN.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Minigames/Frogger.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Minigames/Frogger.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Npc/NpcActionStartMiniGame.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Npc/NpcActionStartMiniGame.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +14,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainUI/MainUIController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Minigames/BackToMainScene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Minigames/FlyHunt/AimController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Minigames/FlyHunt/Breath.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Minigames/FlyHunt/ButtonBlink.cs" root0="FORCE_HIGHLIGHTING" />
@@ -25,6 +26,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Npc/NpcAction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Npc/NpcActionTalk.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Npc/NpcController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/StartPositionController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -81,7 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706355310263</updated>
-      <workItem from="1706355316366" duration="13662000" />
+      <workItem from="1706355316366" duration="15012000" />
     </task>
     <servers />
   </component>
