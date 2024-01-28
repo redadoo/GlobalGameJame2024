@@ -10,6 +10,7 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Transform              player;
     [SerializeField] private Transform              playerObject;
     [SerializeField] private float                  rotationSpeed;
+    [SerializeField] private float                  timer  = 2;
     [SerializeField] private CinemachineTargetGroup targetGroup;
 
     [Header("Camera")]
@@ -17,6 +18,8 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private GameObject dialogueCam;
     [SerializeField] private GameObject memoryMinigameCamera;
     [SerializeField] private GameObject topDownCam;
+    [SerializeField] private GameObject firstPrincessCamera;
+    [SerializeField] private GameObject secondPrincessCamera;
 
     [SerializeField] private CameraStyle currentStyle;
     public enum CameraStyle
