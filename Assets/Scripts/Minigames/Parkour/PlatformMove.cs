@@ -6,21 +6,22 @@ using UnityEngine;
 public class PlatformMove : MonoBehaviour
 {
     [Range(0, 40)]
-    [SerializeField] private float      rangeMove;
-    [SerializeField] private Vector3    destinationA;
-    [SerializeField] private Vector3    destinationB;
-    [SerializeField] private float      distanceToDestination;
-    [SerializeField] private bool       isGoing;
-    [SerializeField] private bool       isFallingDown = false;
-    [SerializeField] private float      speedMove;
-    [SerializeField] private float      timer = 3f;
+    [SerializeField] private float rangeMove;
+    [SerializeField] private Vector3 destinationA;
+    [SerializeField] private Vector3 destinationB;
+    [SerializeField] private float distanceToDestination;
+    [SerializeField] private bool   isGoing;
+    [SerializeField] private bool   isFallingDown = false;
+    [SerializeField] private float speedMove = .5f;
+    [SerializeField] private float timer = 3f;
 
     [System.Serializable]
     public enum Dir
     {
         Horizontal,
         Vertical,
-        Fall
+        Fall,
+        None
     }
 
 
@@ -28,6 +29,7 @@ public class PlatformMove : MonoBehaviour
 
     private void Start()
     {
+        if (direction == Dir.None) return ;
         isGoing = true;
 
         if (direction == Dir.Horizontal)
@@ -35,7 +37,7 @@ public class PlatformMove : MonoBehaviour
             destinationA = new(transform.position.x + rangeMove, transform.position.y, transform.position.z);
             destinationB = new(transform.position.x - rangeMove, transform.position.y, transform.position.z);
         }
-        else if(direction == Dir.Vertical)
+        else if (direction == Dir.Vertical)
         {
             destinationA = new(transform.position.x, transform.position.y, transform.position.z + rangeMove);
             destinationB = new(transform.position.x, transform.position.y, transform.position.z - rangeMove);
@@ -44,9 +46,13 @@ public class PlatformMove : MonoBehaviour
 
     private void Update()
     {
-        if(direction == Dir.Fall)
+        if (direction == Dir.Fall)
         {
-
+            if (timer == 0)
+            {
+                
+            }
+            timer -= Time.deltaTime;
         }
 
         if (isGoing && direction != Dir.Fall)
@@ -66,15 +72,21 @@ public class PlatformMove : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        print(collision.gameObject.name);
-        collision.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Force);
-
+        if(direction != Dir.None)
+            speedMove = 0.2f;
     }
-    private void OnCollisionStay(Collision collision)
+
+    private void OnTriggerStay(Collider other)
     {
-        print(collision.gameObject.name);
-        collision.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Force);
+
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (direction != Dir.None)
+            speedMove = 0.5f;
     }
 }

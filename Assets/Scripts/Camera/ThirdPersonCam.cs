@@ -92,7 +92,6 @@ public class ThirdPersonCam : MonoBehaviour
         dialogueCam.SetActive(false);
         thirdPersonCam.SetActive(false);
         topDownCam.SetActive(false);
-        memoryMinigameCamera.SetActive(false);
 
         if (newStyle == CameraStyle.Basic) thirdPersonCam.SetActive(true);
         if (newStyle == CameraStyle.Topdown) topDownCam.SetActive(true);

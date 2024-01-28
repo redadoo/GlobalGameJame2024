@@ -9,6 +9,7 @@ TagManager:
   - Button
   - interactable
   - memory_minigame
+  - Water
   layers:
   - Default
   - TransparentFX

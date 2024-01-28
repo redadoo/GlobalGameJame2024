@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ParkourManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 spawnPoint;
+
+    public static ParkourManager Instance { get; private set; }
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
