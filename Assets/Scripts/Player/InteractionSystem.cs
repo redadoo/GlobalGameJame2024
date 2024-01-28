@@ -45,7 +45,7 @@ public class InteractionSystem : MonoBehaviour
 
     private void Update()
     {
-
+        GetComponent<Rigidbody>().AddForce(transform.forward, ForceMode.Force);
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, 5, transform.forward, 1f);
 
         foreach (RaycastHit hit in hits)
