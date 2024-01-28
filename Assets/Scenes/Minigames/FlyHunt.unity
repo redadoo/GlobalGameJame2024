@@ -4048,7 +4048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a135b5df40d40d47b8cd4ebf528a8ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToWin: 200000
+  pointsToWin: 2000
   titleScreen: {fileID: 1116127063}
   gameplayScreen: {fileID: 383197374}
   gameDurationSeconds: 45
