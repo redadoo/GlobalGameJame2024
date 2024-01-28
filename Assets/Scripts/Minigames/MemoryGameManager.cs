@@ -3,6 +3,10 @@ using System;
 using Random = UnityEngine.Random;
 using System.Linq;
 using System.Collections.Generic;
+using UnityAtoms.BaseAtoms;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
+using UnityEditor.Rendering.LookDev;
 
 public class MemoryGameManager : MonoBehaviour
 {
@@ -25,10 +29,15 @@ public class MemoryGameManager : MonoBehaviour
     [SerializeField] private List<AudioClip>    soundMinigames;
     [SerializeField] public  int                inputLen;
     [SerializeField] private bool               isPlaying;
-    
+    [SerializeField] private BoolVariable       isSimonSaysCompleted;
+    [SerializeField] public int                life;
+   
+
     public AudioClip[] GetAudioClipArray() => audioClips;
     public List<AudioClip> GetAudioClipMinigames() => soundMinigames;
     public bool isEnemyPlaying = false;
+
+
 
     private void Awake()
     {
@@ -36,6 +45,7 @@ public class MemoryGameManager : MonoBehaviour
     }
     void Start()
     {
+        life = 3;
         OnMemoryMiniGameStart?.Invoke(this, EventArgs.Empty);
         //InteractionSystem.Instance.OnMemoryMiniGameStart += OnMemoryMiniGameStart;
         isPlaying = true;
@@ -61,6 +71,13 @@ public class MemoryGameManager : MonoBehaviour
 
     private void Update()
     {
+        if (life == 0)
+        {
+            SceneManager.LoadScene("MemoryGame");
+        }
+        if (inputLen == 7)
+            isSimonSaysCompleted.Value = true;
+
         if (isPlaying)
         {
             if (soundMinigames.Count == 0)
@@ -80,6 +97,8 @@ public class MemoryGameManager : MonoBehaviour
         }
 ;
     }
+
+    public int GetLife() => life;
 
     public void ChangeMemoryState(MemoryGameState newState)
     {
